@@ -58,9 +58,9 @@ VALUES
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
 
-# Analysis:
+#Analysis:
 
-# What industries have the highest average tenure even when not offering healthcare benefits?
+#What industries have the highest average tenure even when not offering healthcare benefits?
 
 SELECT industry, avg_employee_tenure
 FROM fortune_companies
@@ -69,7 +69,7 @@ GROUP BY industry
 ORDER BY avg_employee_tenure desc
 ;
 
-# Assign revenue ranges for quick analysis of revenue for the companies in technology and finance.
+#Assign revenue ranges for quick analysis of revenue for the companies in technology and finance.
 
 SELECT company_name, industry, revenue,
 CASE WHEN revenue >= 300 THEN '+$300k'
@@ -82,7 +82,7 @@ OR industry = 'Technology'
 ORDER BY revenue desc
 ;
 
-# What is the average number of employees at companies in each industry that offer both healthcare and generous parental leave?
+#What is the average number of employees at companies in each industry that offer both healthcare and generous parental leave?
 
 SELECT industry, AVG(employees) AS avg_employees
 FROM fortune_companies
@@ -92,7 +92,7 @@ GROUP BY industry
 ORDER BY avg_employees desc
 ;
 
-# What is the average number of PTO days per industry, using only companies offering a minimum of 18 days PTO, 
+#What is the average number of PTO days per industry, using only companies offering a minimum of 18 days PTO, 
 healthcare benefits, with an average tenure of 5 years or more?
 
 SELECT industry, AVG(paid_time_off_days) AS avg_pto
@@ -104,7 +104,7 @@ HAVING paid_time_off_days >= 18
 ORDER BY avg_pto desc
 ;
 
-# What is the revenue of companies that offer the best parental leave package?
+#What is the revenue of companies that offer the best parental leave package?
 
 SELECT revenue, maternity_leave_weeks, company_name
 FROM fortune_companies
