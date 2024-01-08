@@ -1,0 +1,20 @@
+#This is currently an unfinished work in progress.
+#For this project I worked with a dataset called chinook, which represents a digital media store.
+#The database has 11 tables with data related to artists, albums, media tracks, invoices, customers, and more.
+#I came up with the following analysis questions and SQL. 
+
+#What is the total company revenue?
+SELECT ROUND(SUM(Total),1) AS 'revenue'
+FROM chinook.Invoices;
+
+#Show breakdown of revenue by country. 
+SELECT ROUND(SUM(Total),3) as revenue, billingcountry as country
+FROM chinook.Invoices inv
+GROUP BY country
+ORDER BY revenue DESC;
+
+#Show breakdown of revenue by city.
+SELECT ROUND(SUM(Total),3) as revenue, billingcity as city
+FROM chinook.Invoices 
+GROUP BY city
+ORDER BY revenue DESC;
