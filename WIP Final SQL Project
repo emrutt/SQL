@@ -18,3 +18,39 @@ SELECT ROUND(SUM(Total),3) as revenue, billingcity as city
 FROM chinook.Invoices 
 GROUP BY city
 ORDER BY revenue DESC;
+
+#Show breakdown of genre popularity on music playlists which are not grouped by genre alone. 
+#1 - this being for the playlist titled Music:
+SELECT COUNT(t.genreid), g.name
+FROM chinook.tracks t
+JOIN chinook.playlist_track pt
+ON t.trackid = pt.trackid
+JOIN chinook.genres g
+ON t.genreid = g.genreid
+WHERE Playlistid = '1'
+GROUP BY t.genreid
+ORDER BY COUNT(t.genreid) desc;
+
+#Show breakdown of genre popularity on music playlists which are not grouped by genre alone. 
+#2 - this being for the playlist titled 90s Music:
+SELECT COUNT(g.name), g.name
+FROM chinook.tracks t
+JOIN chinook.playlist_track pt
+ON t.trackid = pt.trackid
+JOIN chinook.genres g
+ON t.genreid = g.genreid
+WHERE Playlistid = '5'
+GROUP BY g.name
+ORDER BY COUNT(g.name) desc;
+
+#Show breakdown of genre popularity on music playlists which are not grouped by genre alone. 
+#3 - this being for the playlist titled On-The-Go 1:
+SELECT COUNT(g.name), g.name
+FROM chinook.tracks t
+JOIN chinook.playlist_track pt
+ON t.trackid = pt.trackid
+JOIN chinook.genres g
+ON t.genreid = g.genreid
+WHERE Playlistid = '18'
+GROUP BY g.name
+ORDER BY COUNT(g.name) desc;
