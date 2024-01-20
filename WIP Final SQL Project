@@ -54,3 +54,16 @@ ON t.genreid = g.genreid
 WHERE Playlistid = '18'
 GROUP BY g.name
 ORDER BY COUNT(g.name) desc;
+
+#Which artists songs show up the most on playlists? List the top ten. 
+SELECT COUNT(ar.name), ar.name
+FROM chinook.artists ar 
+  JOIN chinook.albums a
+  ON ar.artistid = a.artistid
+    JOIN chinook.tracks t
+    ON t.albumid = a.albumid
+      JOIN chinook.playlist_track pt
+      ON pt.trackid = t.trackid
+GROUP BY ar.name
+ORDER BY COUNT(ar.name) desc
+LIMIT 10;
